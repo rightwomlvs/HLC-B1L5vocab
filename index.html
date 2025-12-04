@@ -468,6 +468,7 @@
               return VOCAB_DATA[gameQueue[currentIndex]];
           };
 
+          // --- Updated handleCorrect to include speech for all modes ---
           const handleCorrect = () => {
             setFeedback('correct');
             playSound('correct');
@@ -477,14 +478,21 @@
             
             const currentWord = getCurrentWordData();
 
+            // Check if it's a sentence mode or a basic vocab mode
             if (isSentenceMode) {
+                // Sentence Modes: Read full sentence
                 setTimeout(() => {
                     speak(currentWord.sentence, () => {
                         setTimeout(() => nextQuestion(), 1000);
                     });
                 }, 500);
             } else {
-                setTimeout(() => nextQuestion(), 2000);
+                // Basic Vocab Modes: Read single word
+                setTimeout(() => {
+                    speak(currentWord.word, () => {
+                        setTimeout(() => nextQuestion(), 1000);
+                    });
+                }, 500);
             }
           };
 
