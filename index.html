@@ -48,6 +48,10 @@
         // =================================================================
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_ItBq4a52QohWZtiHJQwnXsuaIqwxSuLcIy47jLZxK5rR3LtV3DT7h9G5NBv-PGA5/exec"; 
         
+        // 設定本單元的標題 (顯示於介面並用於匯出識別)
+        const GAME_TITLE = "HLC B1L5 Petconomy";
+
+
         // --- 1. SVG Icons (取代 Lucide-react) ---
         const IconBase = ({ size = 24, className = "", children, ...props }) => (
             <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>{children}</svg>
@@ -74,7 +78,7 @@
         const UploadCloud = (props) => <IconBase {...props}><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" /><path d="M12 12v9" /><path d="m16 16-4-4-4 4" /></IconBase>;
 
 
-        // --- 2. 資料庫 (B1L5) ---
+        // --- 2. 資料庫 (HLC B1L5 Petconomy) ---
         const VOCAB_DATA = [
           { 
             id: 1, 
@@ -121,10 +125,10 @@
             word: 'nowadays', 
             pos: 'adv.', 
             meaning: '現今，當下', 
-            sentence: 'Nowadays, people spend too much time on their smartphones.', 
-            sentence_cn: '現今，人們花太多時間在智慧型手機上。', 
-            targetInSentence: 'Nowadays',
-            chunks: ['Nowadays,', 'people spend', 'too much time', 'on their smartphones.']
+            sentence: 'People nowadays spend too much time on their smartphones.', 
+            sentence_cn: '現今人們花太多時間在智慧型手機上。', 
+            targetInSentence: 'nowadays',
+            chunks: ['People', 'nowadays', 'spend', 'too much time', 'on their smartphones.']
           },
           { 
             id: 6, 
@@ -265,7 +269,7 @@
             sentence_cn: '當我做功課需要幫忙時，我總是向我的朋友琳求助。', 
             targetInSentence: 'turn to',
             chunks: ['When I need help', 'with my homework,', 'I always', 'turn to', 'my friend Lynn.']
-          },
+          }
         ];
 
         // --- 3. 遊戲模式 ---
@@ -644,7 +648,8 @@
                   studentInfo,
                   totalScore,
                   totalTime,
-                  levelRecords
+                  levelRecords,
+                  gameTitle: GAME_TITLE
               };
 
               try {
@@ -857,7 +862,7 @@
                   </div>
 
                   <header className="mb-8 md:mb-12">
-                    <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-2">單字大挑戰 <span className="text-teal-500">HLC B1L5 Petconomy</span></h1>
+                    <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-2">單字大挑戰 <span className="text-teal-500">{GAME_TITLE}</span></h1>
                     <p className="text-slate-600 flex items-center gap-2"><AlertCircle size={16} />完成所有任務，挑戰最高分！</p>
                   </header>
 
